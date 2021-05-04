@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="https://www.thymeleaf.org"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>新規登録</title>
+</head>
+<body>
+    <div class="signup-form">
+        <form th:action="@{http://localhost:8080/product/create}" th:method="post" th:object="${ProductsForm}">
+            <label class="loginId-label">名前</label>
+            <input type="text" name="name" id="loginId"><br />
+            <label class="loginId-label">メール</label>
+            <input type="text" name="stock" ><br />
+            <label class="password-label">パスワード</label>
+            <input type="text" name="price" id="password"><br />
+            <button type="submit" class="signup-btn">登録</button>
+        </form>
+    </div>
+</body>
+</html>
