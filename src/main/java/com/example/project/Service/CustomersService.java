@@ -31,7 +31,7 @@ public class CustomersService {
         newData.setPhone(form.getPhone());
         newData.setAddress(form.getAddress());
         // newData.setDisplay(true);
-        
+        // return newData;
         return customersRepository.save(newData);
         
     }

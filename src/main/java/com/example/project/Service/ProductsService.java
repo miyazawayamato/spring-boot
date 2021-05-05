@@ -30,7 +30,6 @@ public class ProductsService {
         newData.setStock(form.getStock());
         newData.setPrice(form.getPrice());
         newData.setDisplay(true);
-        
         return productsRepository.save(newData);
     }
     

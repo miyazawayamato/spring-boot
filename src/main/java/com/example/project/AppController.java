@@ -3,8 +3,11 @@ package com.example.project;
 
 import java.util.List;
 
+import com.example.project.Entity.Customers;
 import com.example.project.Entity.Products;
+import com.example.project.Form.CustomersForm;
 import com.example.project.Form.ProductsForm;
+import com.example.project.Service.CustomersService;
 import com.example.project.Service.ProductsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AppController {
+	
+	@Autowired
+    CustomersService customer;
     
 	// トップ・ログイン、新規登録、テストユーザー
 	// メニュー・最後でいい？
@@ -62,6 +68,13 @@ public class AppController {
     public @ResponseBody Products createProducts(@Validated ProductsForm form, BindingResult bindingResult) {
         
         Products pro = products.create(form);
+        return pro;
+    }
+	
+	@RequestMapping(value = "/customer/create", method = RequestMethod.POST)
+    public @ResponseBody Customers createcustomers(@Validated CustomersForm form , BindingResult bindingResult) {
+        
+        Customers pro = customer.create(form);
         return pro;
     }
 	

@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class="signup-form">
-        <form th:action="@{http://localhost:8080/product/create}" th:method="post" th:object="${ProductsForm}">
+        <form th:action="@{http://localhost:8080/customer/create}" th:method="post" th:object="${DeliveryHistoriesForm}">
             <label class="loginId-label">名前</label>
             <input type="text" name="name" id="loginId"><br />
             <label class="loginId-label">メール</label>
-            <input type="text" name="stock" ><br />
+            <input type="text" name="phone" ><br />
             <label class="password-label">パスワード</label>
-            <input type="text" name="price" id="password"><br />
+            <input type="text" name="address" id="password"><br />
             <button type="submit" class="signup-btn">登録</button>
         </form>
     </div>
