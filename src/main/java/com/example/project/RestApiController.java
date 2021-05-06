@@ -44,6 +44,7 @@ public class RestApiController {
     }
     
     //削除・・・falseにするだけ
+    //saveで挿入 id指定
     @RequestMapping(value = "/product/delete", method = RequestMethod.DELETE)
     public Boolean deleteProduct(@RequestBody Products product) {
         
