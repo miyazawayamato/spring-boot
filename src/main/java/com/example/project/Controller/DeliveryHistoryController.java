@@ -3,9 +3,9 @@ package com.example.project.Controller;
 import java.util.List;
 
 import com.example.project.Entity.Deliveries;
-import com.example.project.Entity.Histories;
+// import com.example.project.Entity.Histories;
 import com.example.project.Form.DeliveryHistoriesForm;
-import com.example.project.Form.ProductsForm;
+// import com.example.project.Form.ProductsForm;
 import com.example.project.Service.DeliveriesService;
 import com.example.project.Service.HistoriesService;
 
@@ -27,13 +27,6 @@ public class DeliveryHistoryController {
     @Autowired
     HistoriesService historiesService;
     
-    //定義済みを利用
-    //納品画面 企業選択
-    // @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    //納品画面 商品選択
-    // @RequestMapping(value = "/menu", method = RequestMethod.GET)
-    
-    
     
     //納品登録
     @RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -41,8 +34,6 @@ public class DeliveryHistoryController {
         
         return deliveriesService.create(form);
         
-        
-        // return deli;
     }
     
     
