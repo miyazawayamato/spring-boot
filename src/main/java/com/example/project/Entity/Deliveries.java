@@ -1,5 +1,6 @@
 package com.example.project.Entity;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 // import java.util.Set;
@@ -21,13 +22,11 @@ public class Deliveries {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    private String time;
+    private Timestamp time;
     
     private Integer customers_id;
     
     
-    // @OneToMany(mappedBy="deliveries")
-    // private List<Histories> histories;
     @OneToMany(mappedBy="deliveries", cascade = CascadeType.ALL)
     private List<Histories> histories = new ArrayList<>();
 }

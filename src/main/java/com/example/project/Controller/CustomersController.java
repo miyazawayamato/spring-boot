@@ -28,8 +28,8 @@ public class CustomersController {
     @RequestMapping(value = "/customer/create", method = RequestMethod.POST)
     public Customers createcustomers(@RequestBody CustomersForm form) {
         
-        Customers pro = customers.create(form);
-        return pro;
+        Customers cust = customers.create(form);
+        return cust;
     }
     
     @RequestMapping(value = "/customer/put", method = RequestMethod.PUT)

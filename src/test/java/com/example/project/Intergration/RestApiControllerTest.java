@@ -57,6 +57,6 @@ public class RestApiControllerTest {
         // Invoke-RestMethod -Uri "http://localhost:8080/api/derivery/register" -Method POST -Body ( @{ "products"=[@["name"="test";"stock"=200; "price"=30]] } | ConvertTo-Json) -ContentType "application/json"
         
         //日本語は無理 数字もダブルクォーテーションで囲む
-        // curl -X POST -H 'Content-Type: application/json' -d '{"cutomerId":2 , "products":[{"name":"ftko","stock":"345","price":"980"}, {"name":"1","stock":"900","price":"10"} ]}' http://localhost:8080/api/derivery/register
+        // curl -X POST -H 'Content-Type: application/json' -d '{"cutomerId":1 , "histories":[{"name":"ftko","qty":"345","price":"980"}, {"name":"1","qty":"900","price":"10"} ]}' http://localhost:8080/api/derivery/register
     }
 }

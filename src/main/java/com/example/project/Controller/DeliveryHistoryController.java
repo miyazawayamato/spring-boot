@@ -3,7 +3,9 @@ package com.example.project.Controller;
 import java.util.List;
 
 import com.example.project.Entity.Deliveries;
+import com.example.project.Entity.Histories;
 import com.example.project.Form.DeliveryHistoriesForm;
+import com.example.project.Form.ProductsForm;
 import com.example.project.Service.DeliveriesService;
 import com.example.project.Service.HistoriesService;
 
@@ -35,9 +37,12 @@ public class DeliveryHistoryController {
     
     //納品登録
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public DeliveryHistoriesForm createDeliveryHistory(@RequestBody DeliveryHistoriesForm form) {
+    public Deliveries createDeliveryHistory(@RequestBody DeliveryHistoriesForm form) {
         
-        return form;
+        return deliveriesService.create(form);
+        
+        
+        // return deli;
     }
     
     

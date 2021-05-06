@@ -36,7 +36,6 @@ public class AppController {
 	
 	// 納品登録 createのみ
 	// 納品履歴 read delete put 並べ替えも？
-	
 	// 登録画面 納品先と商品のallを返す
 	// 登録post create
 	// 履歴 deliIdとhisの一覧

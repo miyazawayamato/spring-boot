@@ -1,5 +1,6 @@
 package com.example.project.Entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,10 +33,11 @@ public class Histories {
     @Getter @Setter
     private Integer price;
     
+    
     // @ManyToOne
     // private Deliveries deliveries;
     // @ToString.Exclude
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "deliveries_id")
     private Deliveries deliveries;
 }
