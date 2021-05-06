@@ -24,7 +24,7 @@ public class Deliveries {
     
     private Timestamp time;
     
-    private Integer customers_id;
+    private String cutomer;
     
     
     @OneToMany(mappedBy="deliveries", cascade = CascadeType.ALL)

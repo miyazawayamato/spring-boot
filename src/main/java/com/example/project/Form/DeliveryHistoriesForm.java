@@ -12,7 +12,7 @@ public class DeliveryHistoriesForm  {
     
     //企業id
     
-    private Integer cutomerId;
+    private String cutomer;
     private List<HistoriesForm> histories;
     
     //下記はlist

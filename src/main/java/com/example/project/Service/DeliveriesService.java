@@ -34,7 +34,7 @@ public class DeliveriesService {
     public Deliveries create(DeliveryHistoriesForm form) {
         
         Deliveries newData = new Deliveries();
-        newData.setCustomers_id(form.getCutomerId());
+        newData.setCutomer(form.getCutomer());
         Deliveries deli = deliveriesRepository.save(newData);
         
         List<HistoriesForm> his = form.getHistories();
