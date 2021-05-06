@@ -32,9 +32,9 @@ public class DeliveriesService {
     }
     
     public Deliveries create(DeliveryHistoriesForm form) {
-        
+
         Deliveries newData = new Deliveries();
-        newData.setCutomer(form.getCutomer());
+        newData.setCustomer(form.getCustomer());
         Deliveries deli = deliveriesRepository.save(newData);
         
         List<HistoriesForm> his = form.getHistories();
