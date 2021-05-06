@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 // import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/test")
 public class RestApiController {
     
     @Autowired

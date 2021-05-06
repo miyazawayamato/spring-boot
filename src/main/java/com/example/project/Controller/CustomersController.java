@@ -20,20 +20,20 @@ public class CustomersController {
     CustomersService customers;
     
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
-    public List<Customers> customersGet() {
+    public List<Customers> getCustomers() {
         List<Customers> list = customers.getAll();
         return list;
     }
     
     @RequestMapping(value = "/customer/create", method = RequestMethod.POST)
-    public Customers createcustomers(@RequestBody CustomersForm form) {
+    public Customers createCustomers(@RequestBody CustomersForm form) {
         
         Customers cust = customers.create(form);
         return cust;
     }
     
     @RequestMapping(value = "/customer/put", method = RequestMethod.PUT)
-    public Customers putcustomers(@RequestBody Customers customer) {
+    public Customers putCustomers(@RequestBody Customers customer) {
         
         Customers pro = customers.put(customer);
         return pro;
