@@ -37,6 +37,7 @@ public class DeliveriesService {
         newData.setCustomer(form.getCustomer());
         Deliveries deli = deliveriesRepository.save(newData);
         
+        //ここで個数を調整する
         List<HistoriesForm> his = form.getHistories();
         for(HistoriesForm s : his){
             

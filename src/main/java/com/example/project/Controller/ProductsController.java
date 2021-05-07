@@ -47,5 +47,11 @@ public class ProductsController {
         return products.delete(product.getId());
     }
     
+    @RequestMapping(value = "/delete/ha", method = RequestMethod.POST)
+    public String testProduct(@RequestBody Products product) {
+        
+        return product.getName();
+    }
+    
     
 }
