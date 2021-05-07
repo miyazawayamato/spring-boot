@@ -43,15 +43,16 @@ public class ProductsService {
         return product;
     }
     
-    public Boolean delete(Integer id) {
+    public Integer delete(Integer id) {
         
         Optional<Products> target = productsRepository.findById(id);
         if(target.isEmpty()) {
-            return false;
+            return 0;
+            // return false;
         } else {
             productsRepository.deleteById(id);
         }
-        return true;
+        return id;
     }
     
     

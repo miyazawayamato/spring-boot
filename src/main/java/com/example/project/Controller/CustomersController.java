@@ -38,4 +38,10 @@ public class CustomersController {
         Customers pro = customers.put(customer);
         return pro;
     }
+    
+    @RequestMapping(value = "/customer/delete", method = RequestMethod.DELETE)
+    public Integer deleteProduct(@RequestBody Customers customer) {
+        
+        return customers.delete(customer.getId());
+    }
 }

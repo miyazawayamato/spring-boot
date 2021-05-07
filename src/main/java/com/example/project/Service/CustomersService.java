@@ -46,4 +46,16 @@ public class CustomersService {
         return customer;
     }
     //削除まで
+    
+    public Integer delete(Integer id) {
+        
+        Optional<Customers> target = customersRepository.findById(id);
+        if(target.isEmpty()) {
+            return 0;
+            
+        } else {
+            customersRepository.deleteById(id);
+        }
+        return id;
+    }
 }

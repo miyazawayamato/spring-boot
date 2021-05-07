@@ -47,7 +47,7 @@ public class RestApiControllerTest {
         //curlコマンド
         // Invoke-RestMethod -Uri "http://localhost:8080/api/product/create" -Method POST -Body ( @{"name"="商品DYG";"stock"=700; "price"=304} | ConvertTo-Json) -ContentType "application/json"
         
-        // Invoke-RestMethod -Uri "http://localhost:8080/api/product/put" -Method PUT -Body ( @{"id"=1;"name"="更新テスト";"stock"=200; "price"=30} | ConvertTo-Json) -ContentType "application/json"
+        // Invoke-RestMethod -Uri "http://localhost:8080/api/product/delete" -Method DELETE -Body ( @{"id"=1} | ConvertTo-Json) -ContentType "application/json"
         
         // Invoke-RestMethod -Uri "http://localhost:8080/api/customer/create" -Method POST -Body ( @{"name"="企業１";"phone"=0265980489;"address"="zyuusyo14-219"} | ConvertTo-Json) -ContentType "application/json"
         

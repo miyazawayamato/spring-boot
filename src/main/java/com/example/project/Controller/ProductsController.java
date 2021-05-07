@@ -42,7 +42,7 @@ public class ProductsController {
     
     //削除・・・falseにするだけ
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public Boolean deleteProduct(@RequestBody Products product) {
+    public Integer deleteProduct(@RequestBody Products product) {
         
         return products.delete(product.getId());
     }
