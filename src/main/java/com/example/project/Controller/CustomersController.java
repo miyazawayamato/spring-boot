@@ -8,6 +8,7 @@ import com.example.project.Service.CustomersService;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,9 +40,9 @@ public class CustomersController {
         return pro;
     }
     
-    @RequestMapping(value = "/customer/delete", method = RequestMethod.DELETE)
-    public Integer deleteProduct(@RequestBody Customers customer) {
+    @RequestMapping(value = "/customer/delete/{id}", method = RequestMethod.DELETE)
+    public Integer deleteProduct(@PathVariable("id") Integer id) {
         
-        return customers.delete(customer.getId());
+        return customers.delete(id);
     }
 }

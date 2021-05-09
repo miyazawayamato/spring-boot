@@ -9,6 +9,7 @@ import com.example.project.Form.ProductsForm;
 import com.example.project.Service.ProductsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,18 +41,12 @@ public class ProductsController {
         return pro;
     }
     
-    //削除・・・falseにするだけ
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public Integer deleteProduct(@RequestBody Products product) {
+    //削除
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public Integer deleteProduct(@PathVariable("id") Integer id) {
         
-        return products.delete(product.getId());
+        // return id;
+        return products.delete(id);
     }
-    
-    @RequestMapping(value = "/delete/ha", method = RequestMethod.POST)
-    public String testProduct(@RequestBody Products product) {
-        
-        return product.getName();
-    }
-    
     
 }
