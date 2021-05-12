@@ -29,7 +29,6 @@ public class ProductsService {
         newData.setName(form.getName());
         newData.setStock(form.getStock());
         newData.setPrice(form.getPrice());
-        newData.setDisplay(true);
         return productsRepository.save(newData);
     }
     
@@ -55,6 +54,11 @@ public class ProductsService {
         return id;
     }
     
+    public void calcStock(List<ProductsForm> deliStock) {
+        
+        //qsl分で行う
+        
+    }
     
     
 }

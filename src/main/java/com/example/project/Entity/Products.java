@@ -22,5 +22,4 @@ public class Products implements Serializable {
     private String name;
     private Integer stock;
     private Integer price;
-    private boolean display;
 }
