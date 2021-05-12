@@ -57,6 +57,8 @@ public class ProductsService {
     public void calcStock(List<ProductsForm> deliStock) {
         
         //qsl分で行う
+        //
+        
         
     }
     

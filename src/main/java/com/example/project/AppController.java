@@ -7,6 +7,7 @@ import com.example.project.Entity.Customers;
 import com.example.project.Entity.Products;
 import com.example.project.Form.CustomersForm;
 import com.example.project.Form.ProductsForm;
+import com.example.project.Repository.ProductsRepository;
 import com.example.project.Service.CustomersService;
 import com.example.project.Service.ProductsService;
 

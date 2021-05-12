@@ -60,5 +60,7 @@ public class RestApiControllerTest {
         // curl -X POST -H 'Content-Type: application/json' -d '{"cutomerId":1 , "histories":[{"name":"ftko","qty":"345","price":"980"}, {"name":"1","qty":"900","price":"10"} ]}' http://localhost:8080/api/derivery/register
         
         // curl -X POST -H 'Content-Type: application/json' -d '{"customer": "alltest" , "histories":[{"name":"alt","qty":"111","price":"222"}, {"name":"sav","qty":"600","price":"100"} ], "products":[{"id":"1","stock":"111"}, {"id":"32","stock":"22"} ]}' http://localhost:8080/api/derivery/register
+        
+        // Invoke-RestMethod -Uri "http://localhost:8080/api/product/put/test" -Method GET
     }
 }
