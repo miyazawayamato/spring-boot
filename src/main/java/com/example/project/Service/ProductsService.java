@@ -56,9 +56,11 @@ public class ProductsService {
     
     public void calcStock(List<ProductsForm> deliStock) {
         
-        //qsl分で行う
-        //
-        
+        for (ProductsForm p : deliStock) {
+            
+            productsRepository.updateStock(p.getStock(), p.getId());
+            
+        }
         
     }
     
