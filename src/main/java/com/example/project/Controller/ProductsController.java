@@ -50,4 +50,15 @@ public class ProductsController {
         return products.delete(id);
     }
     
+    // @Autowired
+    // ProductsRepository productsRepository;
+    
+    // @RequestMapping(value = "/put/test", method = RequestMethod.GET)
+    // public boolean oafije() {
+        
+    //     productsRepository.updateStock(100, 4);
+    //     return true;
+        
+    // }
+    
 }
