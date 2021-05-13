@@ -2,6 +2,7 @@ package com.example.project.Service;
 
 // import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.example.project.Entity.Deliveries;
 // import com.example.project.Entity.Histories;
@@ -55,5 +56,19 @@ public class DeliveriesService {
         productsService.calcStock(deliStock);
         
         return newData;
+    }
+    
+    //削除
+    public Integer delete(Integer id) {
+        
+        //deliveryの削除
+        Optional<Deliveries> target = deliveriesRepository.findById(id);
+        if(target.isEmpty()) {
+            return 0;
+        } else {
+            deliveriesRepository.deleteById(id);
+            historiesRepository.deleteHistories(id);
+            return id;
+        }
     }
 }

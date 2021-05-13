@@ -9,6 +9,7 @@ import com.example.project.Service.HistoriesService;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,6 +52,21 @@ public class DeliveryHistoryController {
         
     // }
     
-    //履歴削除
-    // @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    //すべて履歴削除
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public Integer deleteDerivery(@PathVariable("id") Integer id) {
+        
+        
+        return deliveriesService.delete(id);
+        
+        
+    }
+    
+    //一つの商品のみ履歴削除
+    @RequestMapping(value = "/delete/products/history/{id}", method = RequestMethod.DELETE)
+    public Integer deleteHistory(@PathVariable("id") Integer id) {
+        
+        return historiesService.delete(id);
+        
+    }
 }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.example.project.Entity.Products;
 import com.example.project.Form.ProductsForm;
-import com.example.project.Repository.ProductsRepository;
 import com.example.project.Service.ProductsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,19 +45,7 @@ public class ProductsController {
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public Integer deleteProduct(@PathVariable("id") Integer id) {
         
-        // return id;
         return products.delete(id);
     }
-    
-    // @Autowired
-    // ProductsRepository productsRepository;
-    
-    // @RequestMapping(value = "/put/test", method = RequestMethod.GET)
-    // public boolean oafije() {
-        
-    //     productsRepository.updateStock(100, 4);
-    //     return true;
-        
-    // }
     
 }
