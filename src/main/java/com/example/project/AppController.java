@@ -7,7 +7,6 @@ import com.example.project.Entity.Customers;
 import com.example.project.Entity.Products;
 import com.example.project.Form.CustomersForm;
 import com.example.project.Form.ProductsForm;
-import com.example.project.Repository.ProductsRepository;
 import com.example.project.Service.CustomersService;
 import com.example.project.Service.ProductsService;
 
@@ -28,25 +27,6 @@ public class AppController {
 	
 	@Autowired
     CustomersService customer;
-    
-	// トップ・ログイン、新規登録、テストユーザー
-	// メニュー・最後でいい？
-	
-	// 商品管理画面・crud 削除
-	// 納品先情報・crud 削除
-	// 納品登録 createのみ
-	// 納品履歴 read delete put 並べ替えも？
-	// 登録画面 納品先と商品のallを返す
-	// 登録post create
-	// 履歴 deliIdとhisの一覧
-	// 変更 
-	// 削除 
-
-
-
-	// 納品書出力 pdf 後実装
-	
-	// ユーザー 認証 
 	
 	@Autowired
 	ProductsService products;
