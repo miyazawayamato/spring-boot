@@ -1,4 +1,4 @@
-package com.example.project.Intergration;
+package com.example.project.controller;
 
 
 import org.junit.jupiter.api.Test;
@@ -7,18 +7,15 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
-// import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-// import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class CustomersControllerTest {
-    
+public class DeliveryHistoryControllerTest {
     
     @LocalServerPort
 	private int port;
@@ -27,19 +24,10 @@ public class CustomersControllerTest {
     private MockMvc mockMvc;
     
     @Test
-    void getCustomers() throws Exception {
+    void getDeliveryHistory() throws Exception {
         //実行
-        this.mockMvc.perform(get("/api/customers"))
+        this.mockMvc.perform(get("/api/derivery/histories"))
         //確認
         .andExpect(status().is(200));
     }
-    @Test
-    void customersGet() throws Exception {
-        //実行
-        this.mockMvc.perform(post("/api/customer/create"))
-        //確認
-        .andExpect(status().is(200));
-    }
-    
-    
 }

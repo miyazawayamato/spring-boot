@@ -1,4 +1,4 @@
-package com.example.project.Intergration;
+package com.example.project.controller;
 
 
 import org.junit.jupiter.api.Test;
