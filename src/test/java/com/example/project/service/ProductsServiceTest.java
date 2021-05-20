@@ -70,15 +70,10 @@ public class ProductsServiceTest {
     @Test
     public void test_put() {
         
-        Products newProduct = new Products();
-        newProduct.setId(10);
-        newProduct.setName("商品A");
-        newProduct.setPrice(200);
-        newProduct.setStock(500);
+        Mockito.when(productsRepository.findById(createProduct().getId())).thenReturn(Optional.of(createProduct()));
+        Mockito.when(productsService.put(createProduct())).thenReturn(createProduct());
         
-        Mockito.when(productsService.put(newProduct)).thenReturn(newProduct);
-        
-        Products putedProduct = productsService.put(newProduct);
+        Products putedProduct = productsService.put(createProduct());
         assertThat(putedProduct.getName(), is("商品A"));
     }
     
