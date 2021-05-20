@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.project.Entity.Products;
+import com.example.project.Form.ProductsForm;
 import com.example.project.Repository.ProductsRepository;
 import com.example.project.Service.ProductsService;
 
@@ -17,27 +18,29 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.verify;
 
 public class ProductsServiceTest {
     
-    @Mock   // モックオブジェクトとして使用することを宣言
+    @Mock
     private ProductsRepository productsRepository;
 
-    @InjectMocks    // モックオブジェクトの注入
+    @InjectMocks
     private ProductsService productsService;
 
-    @BeforeEach // テストメソッド（@Testをつけたメソッド）実行前に都度実施
+    @BeforeEach
     public void initmocks() {
         MockitoAnnotations.openMocks(this);
     }
     
     @Test
-    public void test_findByCategoryId() {
+    public void test_allget() {
         
-        Mockito.when(productsRepository.findAll()).thenReturn(getProductsId10());
+        Mockito.when(productsRepository.findAll()).thenReturn(createProductsId10());
         
         List<Products> items = productsRepository.findAll();
-
+        
         assertThat(items.get(0).getName(), is("商品A"));
         assertThat(items.get(0).getPrice(), is(200));
         assertThat(items.get(0).getStock(), is(500));
@@ -48,8 +51,60 @@ public class ProductsServiceTest {
 
     }
     
+    @Test
+    public void test_create() {
+        
+        ProductsForm productForm = new ProductsForm();
+        productForm.setName("商品A");
+        productForm.setPrice(200);
+        productForm.setStock(500);
+        
+        Mockito.when(productsService.create(productForm)).thenReturn(createProduct());
+        Products created = productsService.create(productForm);
+        assertThat(created.getName(), is("商品A"));
+        assertThat(created.getPrice(), is(200));
+        assertThat(created.getStock(), is(500));
+        
+    }
     
-    public List<Products> getProductsId10() {
+    @Test
+    public void test_put() {
+        
+        Products newProduct = new Products();
+        newProduct.setId(10);
+        newProduct.setName("商品A");
+        newProduct.setPrice(200);
+        newProduct.setStock(500);
+        
+        Mockito.when(productsService.put(newProduct)).thenReturn(newProduct);
+        
+        Products putedProduct = productsService.put(newProduct);
+        assertThat(putedProduct.getName(), is("商品A"));
+    }
+    
+    @Test
+    public void test_delete() {
+        
+        Mockito.when(productsRepository.findById(10)).thenReturn(Optional.of(createProduct()));
+        
+        Optional<Products> product = productsRepository.findById(10);
+        Integer num = productsService.delete(product.get().getId());
+        
+        assertThat(num, is(10));
+        
+    }
+    
+    public Products createProduct() {
+        
+        Products product = new Products();
+        product.setId(10);
+        product.setName("商品A");
+        product.setPrice(200);
+        product.setStock(500);
+        return product;
+    }
+    
+    public List<Products> createProductsId10() {
         
         List<Products> items = new ArrayList<>();
         

@@ -37,9 +37,9 @@ public class ProductsService {
         if(target.isEmpty()) {
             return null;
         } else {
-            productsRepository.save(product);
+            Products newProduct = productsRepository.save(product);
+            return newProduct;
         }
-        return product;
     }
     
     public Integer delete(Integer id) {
