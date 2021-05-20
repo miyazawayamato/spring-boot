@@ -19,6 +19,7 @@ import org.mockito.MockitoAnnotations;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -81,7 +82,7 @@ public class ProductsServiceTest {
         assertThat(putedProduct.getName(), is("商品A"));
         
         verify(productsRepository, times(1)).save(createProduct());
-        // verify(productsRepository, times(1)).findById(createProduct().getId());
+        verify(productsRepository, times(2)).findById(createProduct().getId());
     }
     
     @Test
@@ -94,7 +95,9 @@ public class ProductsServiceTest {
         
         assertThat(num, is(10));
         
+        verify(productsRepository, times(1)).deleteById(product.get().getId());
     }
+    
     
     public Products createProduct() {
         

@@ -12,12 +12,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class ProductsControllerTest {
+
     
     @LocalServerPort
 	private int port;
@@ -35,27 +37,13 @@ public class ProductsControllerTest {
     
     @Test
     void createProducts() throws Exception {
-
         
-        // this.mockMvc.perform(post("/api/product/create")
-        // .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        // .content("name" = "gysg"))
-        // .andExpect(status().is(200));
+        this.mockMvc.perform(post("/api/product/create")
+        .contentType("application/json")
+        .content("{\"name\":\"yamato\",\"price\":\"200\",\"stock\":\"99\"}"))
+        .andExpect(status().is(200));
         
-        
-        // mockMvc.perform( MockMvcRequestBuilders
-        // .post("/api/product/create")
-        // .content(asJsonString(new ProductsForm()))
-        // .contentType(MediaType.APPLICATION_JSON)
-        // .accept(MediaType.APPLICATION_JSON))
-        // .andExpect(status().isCreated());
     }
     
-    public static String asJsonString(final Object obj) {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+    
 }
