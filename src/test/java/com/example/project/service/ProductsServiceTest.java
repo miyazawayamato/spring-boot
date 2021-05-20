@@ -19,6 +19,7 @@ import org.mockito.MockitoAnnotations;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class ProductsServiceTest {
@@ -37,9 +38,9 @@ public class ProductsServiceTest {
     @Test
     public void test_allget() {
         
-        Mockito.when(productsRepository.findAll()).thenReturn(createProductsId10());
+        Mockito.when(productsService.getAll()).thenReturn(createProductsId10());
         
-        List<Products> items = productsRepository.findAll();
+        List<Products> items = productsService.getAll();
         
         assertThat(items.get(0).getName(), is("商品A"));
         assertThat(items.get(0).getPrice(), is(200));
@@ -48,7 +49,8 @@ public class ProductsServiceTest {
         assertThat(items.get(1).getName(), is("商品B"));
         assertThat(items.get(1).getPrice(), is(300));
         assertThat(items.get(1).getStock(), is(750));
-
+        
+        verify(productsRepository, times(1)).findAll();
     }
     
     @Test
@@ -65,6 +67,8 @@ public class ProductsServiceTest {
         assertThat(created.getPrice(), is(200));
         assertThat(created.getStock(), is(500));
         
+        created.setId(null);
+        verify(productsRepository, times(1)).save(created);
     }
     
     @Test
@@ -75,6 +79,9 @@ public class ProductsServiceTest {
         
         Products putedProduct = productsService.put(createProduct());
         assertThat(putedProduct.getName(), is("商品A"));
+        
+        verify(productsRepository, times(1)).save(createProduct());
+        // verify(productsRepository, times(1)).findById(createProduct().getId());
     }
     
     @Test
