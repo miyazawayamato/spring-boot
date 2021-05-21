@@ -30,8 +30,6 @@ public class CustomersService {
         newData.setName(form.getName());
         newData.setPhone(form.getPhone());
         newData.setAddress(form.getAddress());
-        // newData.setDisplay(true);
-        // return newData;
         return customersRepository.save(newData);
         
     }
@@ -41,9 +39,9 @@ public class CustomersService {
         if(target.isEmpty()) {
             return null;
         } else {
-            customersRepository.save(customer);
+            return customersRepository.save(customer);
         }
-        return customer;
+        
     }
     //削除まで
     

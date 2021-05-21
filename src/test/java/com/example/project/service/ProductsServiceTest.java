@@ -18,12 +18,11 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class ProductsServiceTest {
+    
     
     @Mock
     private ProductsRepository productsRepository;
