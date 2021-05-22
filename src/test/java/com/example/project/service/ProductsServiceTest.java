@@ -18,11 +18,11 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class ProductsServiceTest {
-    
     
     @Mock
     private ProductsRepository productsRepository;
@@ -96,7 +96,6 @@ public class ProductsServiceTest {
         
         verify(productsRepository, times(1)).deleteById(product.get().getId());
     }
-    
     
     public Products createProduct() {
         

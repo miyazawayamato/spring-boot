@@ -13,7 +13,7 @@ class ProjectApplicationTests {
 }
 
 //curlコマンド
-// Invoke-RestMethod -Uri "http://localhost:8080/api/derivery/delete/23" -Method DELETE 
+// Invoke-RestMethod -Uri "http://localhost:8080/api/customer/delete/23" -Method DELETE 
 
 // Invoke-RestMethod -Uri "http://localhost:8080/api/product/delete" -Method DELETE -Body ( @{"id"=1} | ConvertTo-Json) -ContentType "application/json"
 

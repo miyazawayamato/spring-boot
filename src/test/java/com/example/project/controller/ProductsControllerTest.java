@@ -64,7 +64,7 @@ public class ProductsControllerTest {
         
         Mockito.when(productsService.create(createProductForm())).thenReturn(createProduct());
         Products product = productsService.create(createProductForm());
-        
+        //andexpect
         this.mockMvc.perform(put("/api/product/put")
         .contentType("application/json")
         .content("{\"id\":\""+product.getId()+"\",\"name\":\"change\",\"price\":\"200\",\"stock\":\"99\"}"))
