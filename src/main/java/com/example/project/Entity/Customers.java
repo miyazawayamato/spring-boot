@@ -16,6 +16,6 @@ public class Customers {
     private Integer id;
     
     private String name;
-    private Integer phone;
+    private String phone;
     private String address;
 }

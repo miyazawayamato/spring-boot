@@ -6,6 +6,6 @@ import lombok.Data;
 public class CustomersForm  {
     
     private String name;
-    private Integer phone;
+    private String phone;
     private String address;
 }
