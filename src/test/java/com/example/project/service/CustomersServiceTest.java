@@ -90,9 +90,9 @@ public class CustomersServiceTest {
         Mockito.when(customersRepository.findById(10)).thenReturn(Optional.of(createCustomer()));
         
         Optional<Customers> customer = customersRepository.findById(10);
-        // Integer num = customersRepository.delete(2);
+        Integer num = customersService.delete(customer.get().getId());
         
-        // assertThat(num, is(10));
+        assertThat(num, is(10));
         
         verify(customersRepository, times(1)).deleteById(customer.get().getId());
     }
