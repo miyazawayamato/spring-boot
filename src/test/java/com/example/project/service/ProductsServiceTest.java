@@ -15,9 +15,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+
+import javassist.expr.NewArray;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -38,7 +43,7 @@ public class ProductsServiceTest {
     @Test
     public void test_allget() {
         
-        Mockito.when(productsService.getAll()).thenReturn(createProductsId10());
+        Mockito.when(productsRepository.findAll()).thenReturn(createProductsId10());
         
         List<Products> items = productsService.getAll();
         
@@ -56,32 +61,28 @@ public class ProductsServiceTest {
     @Test
     public void test_create() {
         
+        Products product = new Products();
         ProductsForm productForm = new ProductsForm();
-        productForm.setName("商品A");
-        productForm.setPrice(200);
-        productForm.setStock(500);
         
-        Mockito.when(productsService.create(productForm)).thenReturn(createProduct());
-        Products created = productsService.create(productForm);
-        assertThat(created.getName(), is("商品A"));
-        assertThat(created.getPrice(), is(200));
-        assertThat(created.getStock(), is(500));
+        Mockito.when(productsRepository.save(any(Products.class))).thenReturn(product);
+        productsService.create(productForm);
         
-        created.setId(null);
-        verify(productsRepository, times(1)).save(created);
+        verify(productsRepository, times(1)).save(product);
     }
     
     @Test
     public void test_put() {
         
         Mockito.when(productsRepository.findById(createProduct().getId())).thenReturn(Optional.of(createProduct()));
-        Mockito.when(productsService.put(createProduct())).thenReturn(createProduct());
+        Mockito.when(productsRepository.save(createProduct())).thenReturn(createProduct());
         
         Products putedProduct = productsService.put(createProduct());
+        
         assertThat(putedProduct.getName(), is("商品A"));
         
         verify(productsRepository, times(1)).save(createProduct());
-        verify(productsRepository, times(2)).findById(createProduct().getId());
+        verify(productsRepository, times(1)).findById(createProduct().getId());
+        
     }
     
     @Test
@@ -89,12 +90,31 @@ public class ProductsServiceTest {
         
         Mockito.when(productsRepository.findById(10)).thenReturn(Optional.of(createProduct()));
         
-        Optional<Products> product = productsRepository.findById(10);
-        Integer num = productsService.delete(product.get().getId());
+        Integer num = productsService.delete(10);
         
         assertThat(num, is(10));
         
-        verify(productsRepository, times(1)).deleteById(product.get().getId());
+        verify(productsRepository, times(1)).findById(10);
+        verify(productsRepository, times(1)).deleteById(10);
+        
+    }
+    
+    @Test
+    public void test_calcStock() {
+        
+        List<ProductsForm> lists = new ArrayList<>();
+        ProductsForm item1 = new ProductsForm();
+        item1.setId(1);
+        item1.setStock(12);
+        lists.add(item1);
+        lists.add(item1);
+        lists.add(item1);
+        
+        Mockito.doNothing().when(productsRepository).updateStock(anyInt(), anyInt());
+        productsService.calcStock(lists);
+        
+        verify(productsRepository, times(3)).updateStock(anyInt(), anyInt());
+        
     }
     
     public Products createProduct() {

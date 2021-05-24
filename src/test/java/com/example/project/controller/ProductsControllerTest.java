@@ -22,18 +22,15 @@ import com.example.project.Service.ProductsService;
 
 
 @AutoConfigureMockMvc
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 public class ProductsControllerTest {
-    
-    @LocalServerPort
-	private int port;
     
     @Autowired
     private MockMvc mockMvc;
     
     @Mock
     private ProductsService productsService;
-
+    
     @BeforeEach
     public void initmocks() {
         MockitoAnnotations.openMocks(this);
@@ -41,14 +38,18 @@ public class ProductsControllerTest {
     
     @Test
     void productsGet() throws Exception {
-        //実行
+        
+        
+        
         this.mockMvc.perform(get("/api/product/all"))
-        //確認
         .andExpect(status().is(200));
+        
     }
     
     @Test
     void createProducts() throws Exception {
+        
+        
         
         this.mockMvc.perform(post("/api/product/create")
         .contentType("application/json")
