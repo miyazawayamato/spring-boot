@@ -3,6 +3,7 @@ package com.example.project.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -16,6 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.project.Controller.ProductsController;
 import com.example.project.Entity.Products;
 import com.example.project.Form.ProductsForm;
 import com.example.project.Service.ProductsService;
@@ -31,6 +36,9 @@ public class ProductsControllerTest {
     @Mock
     private ProductsService productsService;
     
+    @InjectMocks
+    private ProductsController productsController;
+    
     @BeforeEach
     public void initmocks() {
         MockitoAnnotations.openMocks(this);
@@ -39,7 +47,12 @@ public class ProductsControllerTest {
     @Test
     void productsGet() throws Exception {
         
+        List<Products> lists =  new ArrayList<>();
+        Products item = createProduct();
+        lists.add(item);
+        lists.add(item);
         
+        Mockito.when(productsService.getAll()).thenReturn(lists);
         
         this.mockMvc.perform(get("/api/product/all"))
         .andExpect(status().is(200));
