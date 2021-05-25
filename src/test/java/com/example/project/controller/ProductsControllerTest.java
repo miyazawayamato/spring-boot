@@ -55,14 +55,12 @@ public class ProductsControllerTest {
         Mockito.when(productsService.getAll()).thenReturn(lists);
         
         this.mockMvc.perform(get("/api/product/all"))
-        .andExpect(status().is(200));
+        .andExpect(status().is(200)).andExpect(jsonPath("$.stock").value("99"));
         
     }
     
     @Test
     void createProducts() throws Exception {
-        
-        
         
         this.mockMvc.perform(post("/api/product/create")
         .contentType("application/json")
