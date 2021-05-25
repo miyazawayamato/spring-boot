@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -36,9 +37,9 @@ public class CustomersServiceTest {
     
     
     @Test
-    public void test_allget() {
+    public void test_allget() throws Exception {
         
-        Mockito.when(customersService.getAll()).thenReturn(createCustomers());
+        Mockito.when(customersRepository.findAll()).thenReturn(createCustomers());
         
         List<Customers> items = customersService.getAll();
         
@@ -54,47 +55,41 @@ public class CustomersServiceTest {
     }
     
     @Test
-    public void test_create() {
+    public void test_create() throws Exception {
         
         CustomersForm customersForm = new CustomersForm();
-        customersForm.setName("企業A");
-        customersForm.setAddress("B県C市D番地");
-        customersForm.setPhone("1234567890");
+        Customers customer = new Customers();
         
-        Mockito.when(customersService.create(customersForm)).thenReturn(createCustomer());
-        Customers created = customersService.create(customersForm);
-        assertThat(created.getName(), is("企業A"));
-        assertThat(created.getAddress(), is("B県C市D番地"));
-        assertThat(created.getPhone(), is("1234567890"));
+        Mockito.when(customersRepository.save(any(Customers.class))).thenReturn(customer);
+        customersService.create(customersForm);
         
-        created.setId(null);
-        verify(customersRepository, times(1)).save(created);
+        verify(customersRepository, times(1)).save(customer);
     }
     
     @Test
-    public void test_put() {
+    public void test_put() throws Exception {
         
         Mockito.when(customersRepository.findById(createCustomer().getId())).thenReturn(Optional.of(createCustomer()));
-        Mockito.when(customersService.put(createCustomer())).thenReturn(createCustomer());
+        Mockito.when(customersRepository.save(createCustomer())).thenReturn(createCustomer());
         
         Customers putedcustomer = customersService.put(createCustomer());
-        assertThat(putedcustomer.getName(), is("企業A"));
         
+        assertThat(putedcustomer.getName(), is("企業A"));
         verify(customersRepository, times(1)).save(createCustomer());
-        verify(customersRepository, times(2)).findById(createCustomer().getId());
+        verify(customersRepository, times(1)).findById(createCustomer().getId());
     }
     
     @Test
-    public void test_delete() {
+    public void test_delete() throws Exception {
         
         Mockito.when(customersRepository.findById(10)).thenReturn(Optional.of(createCustomer()));
         
-        Optional<Customers> customer = customersRepository.findById(10);
-        Integer num = customersService.delete(customer.get().getId());
+        Integer num = customersService.delete(10);
         
         assertThat(num, is(10));
         
-        verify(customersRepository, times(1)).deleteById(customer.get().getId());
+        verify(customersRepository, times(1)).deleteById(10);
+        verify(customersRepository, times(1)).findById(10);
     }
     
     

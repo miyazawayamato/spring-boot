@@ -43,7 +43,6 @@ public class CustomersService {
         }
         
     }
-    //削除まで
     
     public Integer delete(Integer id) {
         

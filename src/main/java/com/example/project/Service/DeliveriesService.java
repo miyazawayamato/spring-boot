@@ -60,6 +60,7 @@ public class DeliveriesService {
         
         //deliveryの削除
         Optional<Deliveries> target = deliveriesRepository.findById(id);
+        
         if(target.isEmpty()) {
             return 0;
         } else {

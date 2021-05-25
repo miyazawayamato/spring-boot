@@ -15,15 +15,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
-
-import javassist.expr.NewArray;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -41,7 +37,7 @@ public class ProductsServiceTest {
     }
     
     @Test
-    public void test_allget() {
+    public void test_allget() throws Exception {
         
         Mockito.when(productsRepository.findAll()).thenReturn(createProductsId10());
         
@@ -59,7 +55,7 @@ public class ProductsServiceTest {
     }
     
     @Test
-    public void test_create() {
+    public void test_create() throws Exception {
         
         Products product = new Products();
         ProductsForm productForm = new ProductsForm();
@@ -71,7 +67,7 @@ public class ProductsServiceTest {
     }
     
     @Test
-    public void test_put() {
+    public void test_put() throws Exception {
         
         Mockito.when(productsRepository.findById(createProduct().getId())).thenReturn(Optional.of(createProduct()));
         Mockito.when(productsRepository.save(createProduct())).thenReturn(createProduct());
@@ -86,7 +82,7 @@ public class ProductsServiceTest {
     }
     
     @Test
-    public void test_delete() {
+    public void test_delete() throws Exception {
         
         Mockito.when(productsRepository.findById(10)).thenReturn(Optional.of(createProduct()));
         
