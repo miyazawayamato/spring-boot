@@ -30,3 +30,5 @@ class ProjectApplicationTests {
 // curl -X POST -H 'Content-Type: application/json' -d '{"customer": "query" , "histories":[{"name":"yu","qty":"22","price":"222"}, {"name":"menndo","qty":"666","price":"66"} ], "products":[{"id":"4","stock":"50"}, {"id":"6","stock":"73"} ]}' http://localhost:8080/api/derivery/register
 
 // Invoke-RestMethod -Uri "http://localhost:8080/api/product/put/test" -Method GET
+
+//.content("{\"id\":\""+product.getId()+"\",\"name\":\"change\",\"price\":\"200\",\"stock\":\"99\"}"))

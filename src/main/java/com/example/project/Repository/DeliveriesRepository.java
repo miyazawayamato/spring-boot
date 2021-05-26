@@ -11,6 +11,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DeliveriesRepository extends JpaRepository<Deliveries, Integer> {
 
-    Object saveAll(List<HistoriesForm> anyListOf);
     
 }

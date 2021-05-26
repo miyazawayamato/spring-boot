@@ -1,19 +1,15 @@
 package com.example.project.controller;
 
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -25,24 +21,14 @@ import com.example.project.Entity.Products;
 import com.example.project.Form.ProductsForm;
 import com.example.project.Service.ProductsService;
 
-
-@AutoConfigureMockMvc
-@SpringBootTest
+@WebMvcTest(ProductsController.class)
 public class ProductsControllerTest {
     
     @Autowired
     private MockMvc mockMvc;
     
-    @Mock
+    @MockBean
     private ProductsService productsService;
-    
-    @InjectMocks
-    private ProductsController productsController;
-    
-    @BeforeEach
-    public void initmocks() {
-        MockitoAnnotations.openMocks(this);
-    }
     
     @Test
     void productsGet() throws Exception {
@@ -50,49 +36,63 @@ public class ProductsControllerTest {
         List<Products> lists =  new ArrayList<>();
         Products item = createProduct();
         lists.add(item);
-        lists.add(item);
         
         Mockito.when(productsService.getAll()).thenReturn(lists);
         
         this.mockMvc.perform(get("/api/product/all"))
-        .andExpect(status().is(200)).andExpect(jsonPath("$.stock").value("99"));
+        .andExpect(status().is(200))
+        .andExpect(jsonPath("$.[0].id").value("10"))
+        .andExpect(jsonPath("$.[0].name").value("商品A"))
+        .andExpect(jsonPath("$.[0].price").value("200"))
+        .andExpect(jsonPath("$.[0].stock").value("500"));
+        
+        verify(productsService, times(1)).getAll();
         
     }
     
     @Test
     void createProducts() throws Exception {
         
+        Mockito.when(productsService.create(createProductForm())).thenReturn(createProduct());
+        
         this.mockMvc.perform(post("/api/product/create")
         .contentType("application/json")
-        .content("{\"name\":\"yamato\",\"price\":\"200\",\"stock\":\"99\"}"))
+        .content("{\"name\":\"商品A\",\"price\":\"200\",\"stock\":\"500\"}"))
         .andExpect(status().is(200))
-        .andExpect(jsonPath("$.name").value("yamato"))
+        .andExpect(jsonPath("$.id").value("10"))
+        .andExpect(jsonPath("$.name").value("商品A"))
         .andExpect(jsonPath("$.price").value("200"))
-        .andExpect(jsonPath("$.stock").value("99"));
+        .andExpect(jsonPath("$.stock").value("500"));
+        
+        verify(productsService, times(1)).create(createProductForm());
         
     }
     @Test
     void putProducts() throws Exception {
         
-        Mockito.when(productsService.create(createProductForm())).thenReturn(createProduct());
-        Products product = productsService.create(createProductForm());
-        //andexpect
+        Mockito.when(productsService.put(createProduct())).thenReturn(createProduct());
+        
         this.mockMvc.perform(put("/api/product/put")
         .contentType("application/json")
-        .content("{\"id\":\""+product.getId()+"\",\"name\":\"change\",\"price\":\"200\",\"stock\":\"99\"}"))
-        .andExpect(status().is(200));
+        .content("{\"id\":\"10\",\"name\":\"商品A\",\"price\":\"200\",\"stock\":\"500\"}"))
+        .andExpect(status().is(200))
+        .andExpect(jsonPath("$.id").value("10"))
+        .andExpect(jsonPath("$.name").value("商品A"))
+        .andExpect(jsonPath("$.price").value("200"))
+        .andExpect(jsonPath("$.stock").value("500"));
         
+        verify(productsService, times(1)).put(createProduct());
     }
     
     @Test
     void deleteProducts() throws Exception {
         
-        Mockito.when(productsService.create(createProductForm())).thenReturn(createProduct());
-        Products created = productsService.create(createProductForm());
+        Mockito.when(productsService.delete(10)).thenReturn(10);
         
-        this.mockMvc.perform(delete("/api/product/delete/" + created.getId()))
-        .andExpect(status().is(200));
+        this.mockMvc.perform(delete("/api/product/delete/10"))
+        .andExpect(status().is(200)).andExpect(content().string("10"));
         
+        verify(productsService, times(1)).delete(10);
     }
     
     public Products createProduct() {
