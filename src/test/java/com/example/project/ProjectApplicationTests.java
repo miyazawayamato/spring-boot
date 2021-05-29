@@ -31,4 +31,3 @@ class ProjectApplicationTests {
 
 // Invoke-RestMethod -Uri "http://localhost:8080/api/product/put/test" -Method GET
 
-//.content("{\"id\":\""+product.getId()+"\",\"name\":\"change\",\"price\":\"200\",\"stock\":\"99\"}"))
