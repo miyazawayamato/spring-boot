@@ -90,6 +90,7 @@ public class CustomersServiceTest {
         
         verify(customersRepository, times(1)).deleteById(10);
         verify(customersRepository, times(1)).findById(10);
+        
     }
     
     
@@ -102,6 +103,7 @@ public class CustomersServiceTest {
         customer.setAddress("B県C市D番地");
         customer.setPhone("1234567890");
         return customer;
+        
     }
     
     public List<Customers> createCustomers() {
@@ -123,5 +125,6 @@ public class CustomersServiceTest {
         items.add(customer2);
         
         return items;
+        
     }
 }
