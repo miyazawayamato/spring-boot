@@ -34,7 +34,7 @@ public class DeliveriesServicTest {
     private HistoriesRepository historiesRepository;
     @Mock
     private ProductsService productsService;
-
+    
     @InjectMocks
     private DeliveriesService deliveriesService;
 
@@ -79,6 +79,7 @@ public class DeliveriesServicTest {
         verify(deliveriesRepository, times(1)).findById(10);
         verify(deliveriesRepository, times(1)).deleteById(10);
         verify(historiesRepository, times(1)).deleteHistories(10);
+        
     }
     
 }
