@@ -19,7 +19,7 @@ class ProjectApplicationTests {
 
 // Invoke-RestMethod -Uri "http://localhost:8080/api/customer/create" -Method POST -Body ( @{"name"="企業１";"phone"=0265980489;"address"="zyuusyo14-219"} | ConvertTo-Json) -ContentType "application/json"
 
-//DHform
+//
 // Invoke-RestMethod -Uri "http://localhost:8080/api/derivery/register" -Method POST -Body ( @{"cutomerId"=1; "products"=@{"name"="更新テスト";"stock"=200; "price"=30} } | ConvertTo-Json) -ContentType "application/json"
 
 // Invoke-RestMethod -Uri "http://localhost:8080/api/derivery/register" -Method POST -Body ( @{ "products"=[@["name"="test";"stock"=200; "price"=30]] } | ConvertTo-Json) -ContentType "application/json"
